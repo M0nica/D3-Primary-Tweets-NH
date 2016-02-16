@@ -15,10 +15,14 @@
 	    font-size: 1.5em;
 	}
 
+	svg {
+		padding: 30px;
+	}
+
 		</style>
 	</head>
 	<body>
-			<p>Click on this text to look at the next hour's tweets.</p>
+			<button>Click on this text to look at the next hour's distribution of tweets.</button>
 			<a href="/clintonvsanders.html">Compare Hillary Clinton to Bernie Sanders.</a>
 			<a href="trumpvcruz.html">Compare Donald Trump to Ted Cruz.</a>
 			<br>
@@ -62,6 +66,7 @@
 			var w = 600;
 			var h = 250;
 			var hour = 1;
+			 colors = d3.scale.category20()
 			var dataset =
 			[{ candidate: "Bernie Sanders", value: 630 },
 			{ candidate: "Donald Trump", value: 871},
@@ -143,17 +148,17 @@ else if (hour == 5 ){
 ;
 }
 
-else if (hour == 6){
-//var datasethour6 =
- dataset =
-[{ candidate: "Bernie Sanders", value: 3},
-{ candidate: "Donald Trump", value: 8},
-{ candidate: "Hillary Clinton", value: 3},
-{ candidate: "Marco Rubio", value: 3},
-{ candidate: "Ted Cruz", value: 2}]
-;
-
-}
+// else if (hour == 6){
+// //var datasethour6 =
+//  dataset =
+// [{ candidate: "Bernie Sanders", value: 3},
+// { candidate: "Donald Trump", value: 8},
+// { candidate: "Hillary Clinton", value: 3},
+// { candidate: "Marco Rubio", value: 3},
+// { candidate: "Ted Cruz", value: 2}]
+// ;
+//
+// }
 
 return dataset;
 }
@@ -164,7 +169,7 @@ return dataset;
 							.domain(d3.range(dataset.length))
 							.rangeRoundBands([0, w], 0.05);
 			var yScale = d3.scale.linear()
-							.domain([0, d3.max(dataset, function(d) { return d.value; })])
+							.domain([0, d3.max(dataset, function(d) { return d.value * 1.5; })])
 							.range([0, h]);
 
 			//Define key function, to be used when binding data
@@ -195,9 +200,11 @@ return dataset;
 			//   .attr("fill", function(d) {
 				//	return "rgb(0, 0, " + (d.value * 10) + ")";
 			   //});
-				 .attr("fill", function(d) {
-			 return "rgb(0, 0, " + (d.value * 10) + ")";
-			});
+		//		 .attr("fill", function(d) {
+			// return "rgb(0, 0, " + (d.value * 10) + ")";
+			//});
+
+			.attr("fill",function(d,i){return colors(i)})
 			//Create labels
 			svg.selectAll("text")
 			   .data(dataset, key)		//Bind data with custom key function
@@ -217,6 +224,8 @@ return dataset;
 			   .attr("font-size", "11px")
 			   .attr("fill", "white");
 
+
+
 	//		 svg.append('text')
     //  .attr('x', width / 2)
     //  .attr('y', 20)
@@ -226,15 +235,16 @@ return dataset;
 
 
 				 //On click, update with new data
-				 			d3.select("p")
+				 			d3.select("button")
 				 				.on("click", function() {
 //d3.select("body").replace("p").text("These tweets are from" + hourtext);
 
 				 					//New values for dataset
-if(hour < 6){
+//if(hour < 6){
+if(hour < 5){
 					  hour++;
 					}
-					else {
+					else  {
 						hour = 1;
 					}
              getDataSetByHour(hour);
@@ -263,9 +273,10 @@ if(hour < 6){
 									   .attr("height", function(d) {
 									   		return yScale(d.value);
 									   })
-										 .attr("fill", function(d) {
-			 return "rgb(0, 0, " + (d.value * 10) + ")";
-			});
+			// 							 .attr("fill", function(d) {
+			//  return "rgb(0, 0, " + (d.value * 10) + ")";
+			// });
+			.attr("fill",function(d,i){return colors(i)})
 								//	   .attr("fill", function(d) {
 									//		return "rgb(0, 0, " + (d.value * 10) + ")";
 									  // });
@@ -283,11 +294,14 @@ if(hour < 6){
 									   })
 									   .attr("y", function(d) {
 									   	//	return h - yScale(d.value) + 14;
-											return h - yScale(d.value) - 10;
+											return h - yScale(d.value) + (d.value /20);
 									   })
+
+
+
 									//   .attr("font-family", "sans-serif")
 									//   .attr("font-size", "11px")
-									   .attr("fill", "black");
+									  // .attr("fill", "black");
 
 
 				 				});
@@ -365,6 +379,21 @@ if(hour < 6){
 			// 		   });
 			// 	});
 
+			// now add titles to the axes
+		        svg.append("text")
+		            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+		            .attr("transform", "translate("+ (5/2) +","+(h/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+		            .text("Total # of Tweets");
+
+		        svg.append("text")
+		            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+		            .attr("transform", "translate("+ (w/2) +","+(h+(20))+")")  // centre below axis
+		            .text("Presidental Candidate");
+
+								svg.append("text")
+										.attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+										.attr("transform", "translate("+ (w/2) +","+(h-(250))+")")  // centre below axis
+										.text("Frequency of Presidental Candidate Tweets per Hour" );
 		</script>
 	</body>
 </html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,8 +8,7 @@
 		<style type="text/css">
 			text {
 				font-family: sans-serif;
-
-				    font-size: 10px;
+				font-size: 12px;
 				fill: white;
 			}
 		</style>
@@ -26,7 +26,7 @@
 					//	var w = 600;
 					var w = 250;
 						var h = 250;
-						var hour = 0;
+						var hour = 1;
 						var dataset =
 						[{ candidate: "Bernie Sanders", value: 630 },
 						//{ candidate: "Donald Trump", value: 871},
@@ -265,27 +265,11 @@
 				//else {
 				//hour = 1;
 				//}
-			//	while (hour <= 6){
-	// while (hour <= 5){
-	//
-	// 			 getDataSetByHour(hour);
+				while (hour <= 6){
 
-	d3.select("p")
-		.on("click", function() {
-//d3.select("body").replace("p").text("These tweets are from" + hourtext);
 
-			//New values for dataset
-//if(hour < 6){
-if(hour < 5){
-hour++;
-}
+				 getDataSetByHour(hour);
 
-//else  {
-//hour = 1;
-//}
-if (hour < 6){
-console.log('hour: ' + hour);
-getDataSetByHour(hour);
 	    var vis = d3.select("body")
 	        .append("svg:svg")              //create the SVG element inside the <body>
 	        .data([dataset])                   //associate our data with the document
@@ -315,20 +299,14 @@ getDataSetByHour(hour);
 	                //we have to make sure to set these before calling arc.centroid
 	                d.innerRadius = 0;
 	                d.outerRadius = r;
-								//	 var c = arc.centroid(d);
-	                return "translate(" + arc.centroid(d)  +  ")";        //this gives us a pair of coordinates like [50, 50]
-  //return "translate(" + c[0]*1.5 +"," + c[1]*1.5 + ")";
-
-							})
+	                return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+	            })
 	            .attr("text-anchor", "middle")
 							                            //center the text on it's origin
 	            .text(function(d, i) { return dataset[i].value + "        " + dataset[i].candidate; });      //get the label from our original data array
 
-	 		//hour++;
-
-		}
-});
-/* ------- TEXT LABELS -------*/
+	 		hour++;
+}
 		</script>
 	</body>
 </html>
