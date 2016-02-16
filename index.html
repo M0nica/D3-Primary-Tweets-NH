@@ -192,9 +192,12 @@ return dataset;
 			   .attr("height", function(d) {
 			   		return yScale(d.value);
 			   })
-			   .attr("fill", function(d) {
-					return "rgb(0, 0, " + (d.value * 10) + ")";
-			   });
+			//   .attr("fill", function(d) {
+				//	return "rgb(0, 0, " + (d.value * 10) + ")";
+			   //});
+				 .attr("fill", function(d) {
+			 return "rgb(0, 0, " + (d.value * 10) + ")";
+			});
 			//Create labels
 			svg.selectAll("text")
 			   .data(dataset, key)		//Bind data with custom key function
@@ -260,9 +263,12 @@ if(hour < 6){
 									   .attr("height", function(d) {
 									   		return yScale(d.value);
 									   })
-									   .attr("fill", function(d) {
-											return "rgb(0, 0, " + (d.value * 10) + ")";
-									   });
+										 .attr("fill", function(d) {
+			 return "rgb(0, 0, " + (d.value * 10) + ")";
+			});
+								//	   .attr("fill", function(d) {
+									//		return "rgb(0, 0, " + (d.value * 10) + ")";
+									  // });
 				 					//Update all labels
 									svg.selectAll("text")
 									   .data(dataset, key)		//Bind data with custom key function
