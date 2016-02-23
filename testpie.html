@@ -16,17 +16,17 @@
 	<body>
 			<p>Click on this text to look at the next hour's tweets.</p>
 		<script type="text/javascript">
-		//var w = 300,                        //width
-	  //  h = 300,                            //height
-	    r = 100,                            //radius
-	    color = d3.scale.category20c();     //builtin range of colors
+
+
 
 
 						var hourtext = "8:00";
-					//	var w = 600;
+
 					var w = 250;
 						var h = 250;
 						var hour = 1;
+						r = 100,                            //radius
+						color = d3.scale.category20c();     //builtin range of colors
 						var dataset =
 						[{ candidate: "Bernie Sanders", value: 630 },
 						//{ candidate: "Donald Trump", value: 871},
@@ -107,137 +107,6 @@
 			}
 
 
-			//
-			// 			var xScale = d3.scale.ordinal()
-			// 							.domain(d3.range(dataset.length))
-			// 							.rangeRoundBands([0, w], 0.05);
-			// 			var yScale = d3.scale.linear()
-			// 							.domain([0, d3.max(dataset, function(d) { return d.value; })])
-			// 							.range([0, h]);
-			//
-			// 			//Define key function, to be used when binding data
-			// 			var key = function(d) {
-			// 				return d.candidate;
-			// 			};
-			//
-			// 			//Create SVG element
-			// 			var svg = d3.select("body")
-			// 						.append("svg")
-			// 						.attr("width", w)
-			// 						.attr("height", h);
-			// 			//Create bars
-			// 			svg.selectAll("rect")
-			// 			   .data(dataset, key)		//Bind data with custom key function
-			// 			   .enter()
-			// 			   .append("rect")
-			// 			   .attr("x", function(d, i) {
-			// 			   		return xScale(i);
-			// 			   })
-			// 			   .attr("y", function(d) {
-			// 			   		return h - yScale(d.value);
-			// 			   })
-			// 			   .attr("width", xScale.rangeBand())
-			// 			   .attr("height", function(d) {
-			// 			   		return yScale(d.value);
-			// 			   })
-			// 			   .attr("fill", function(d) {
-			// 					return "rgb(0, 0, " + (d.value * 10) + ")";
-			// 			   });
-			// 			//Create labels
-			// 			svg.selectAll("text")
-			// 			   .data(dataset, key)		//Bind data with custom key function
-			// 			   .enter()
-			// 			   .append("text")
-			// 			   .text(function(d) {
-			// 			   		return d.value + " " + d.candidate;
-			// 			   })
-			// 			   .attr("text-anchor", "middle")
-			// 			   .attr("x", function(d, i) {
-			// 			   		return xScale(i) + xScale.rangeBand() / 2;
-			// 			   })
-			// 			   .attr("y", function(d) {
-			// 			   		return h - yScale(d.value) + 14;
-			// 			   })
-			// 			   .attr("font-family", "sans-serif")
-			// 			   .attr("font-size", "11px")
-			// 			   .attr("fill", "white");
-			//
-			//
-			//
-			// 				 //On click, update with new data
-			// 				 			d3.select("p")
-			// 				 				.on("click", function() {
-			// //d3.select("body").replace("p").text("These tweets are from" + hourtext);
-			//
-			// 				 					//New values for dataset
-			// if(hour < 6){
-			// 					  hour++;
-			// 					}
-			// 					else {
-			// 						hour = 1;
-			// 					}
-			//              getDataSetByHour(hour);
-			// 						 console.log("dataset: " + dataset);
-			// 						 console.log("number: " + hour)
-			// 							//		 dataset =
-			// 		          //     [{ candidate: "Bernie Sanders", value: 229 },
-			// 		          //     { candidate: "Donald Trump", value: 164 },
-			// 		          //     { candidate: "Hillary Clinton", value: 150 },
-			// 		          //     { candidate: "Marco Rubio", value:27 },
-			// 		          //     { candidate: "Ted Cruz", value:34 }]
-			// 		          //     ;
-			// 				 					//Update all rects
-			// 									svg.selectAll("rect")
-			// 									   .data(dataset, key)		//Bind data with custom key function
-			// 										   .transition()
-			// 										// .enter()
-			// 									  // .append("rect")
-			// 									   //.attr("x", function(d, i) {
-			// 									   //		return xScale(i);
-			// 								//	   })
-			// 									   .attr("y", function(d) {
-			// 									   		return h - yScale(d.value);
-			// 									   })
-			// 									//   .attr("width", xScale.rangeBand())
-			// 									   .attr("height", function(d) {
-			// 									   		return yScale(d.value);
-			// 									   })
-			// 									   .attr("fill", function(d) {
-			// 											return "rgb(0, 0, " + (d.value * 10) + ")";
-			// 									   });
-			// 				 					//Update all labels
-			// 									svg.selectAll("text")
-			// 									   .data(dataset, key)		//Bind data with custom key function
-			// 									//   .enter()
-			// 									  // .append("text")
-			// 									   .text(function(d) {
-			// 									   		return d.value + " " + d.candidate;
-			// 									   })
-			// 									  // .attr("text-anchor", "middle")
-			// 									   .attr("x", function(d, i) {
-			// 									   		return xScale(i) + xScale.rangeBand() / 2;
-			// 									   })
-			// 									   .attr("y", function(d) {
-			// 									   	//	return h - yScale(d.value) + 14;
-			// 											return h - yScale(d.value) - 10;
-			// 									   })
-			// 									//   .attr("font-family", "sans-serif")
-			// 									//   .attr("font-size", "11px")
-			// 									   .attr("fill", "black");
-			//
-			//
-			// 				 				});
-			//
-
-		// 	data =
-		//
- 	// 	[{ candidate: "Bernie Sanders", value: 652 },
- 	// 	{ candidate: "Donald Trump", value: 1004},
- 	// 	{ candidate: "Hillary Clinton", value: 582},
- 	// 	{ candidate: "Marco Rubio", value: 219 },
- 	// 	{ candidate: "Ted Cruz", value: 297}]
- 	// 	;
-
 	var dataset =
 	[{ candidate: "Bernie Sanders", value: 630 },
 	//{ candidate: "Donald Trump", value: 871},
@@ -250,21 +119,7 @@
 			return d.candidate;
 		};
 
-			//}
-	    //data = [{"label":"one", "value":20},
-	      //      {"label":"two", "value":50},
-	        //    {"label":"three", "value":30}];
-				//	d3.select("p")
-				//		.on("click", function() {
-				//d3.select("body").replace("p").text("These tweets are from" + hourtext);
-
-							//New values for dataset
-				//if(hour < 6){
-			//	hour++;
-				//}
-				//else {
-				//hour = 1;
-				//}
+		
 				while (hour <= 6){
 
 

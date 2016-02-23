@@ -4,9 +4,9 @@ library(tm)
 library(wordcloud)
 
 
-tweets_shiny.df <- parseTweets("tweets.02.07.2016.summary.json", simplify = TRUE)
+tweets_shiny.df <- parseTweets("tweets.02.07.2016.summary", simplify = TRUE)
 #to remove emojis
-#tweets_shiny.df <- iconv(tweets_shiny.df, "ASCII", "UTF-8", sub="")
+tweets_shiny.df <- iconv(tweets_shiny.df, "ASCII", "UTF-8", sub="")
 tweets_shiny.df$text <- sapply(tweets_shiny.df$text, function(row) iconv(row, "latin1", "ASCII", sub = ""))
 
 hey <- nrow(tweets_shiny.df)
